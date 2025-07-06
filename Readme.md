@@ -48,10 +48,10 @@ receipt_automation/
 
 ## ⚙️ Setup Instructions
 
-### 1. Clone the Repo & Create a Virtual Environment
+### 1. Clone the Repo & Create a Virtual Environment & install popple & run the application
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/mohammed-muzzammil/reciept-automation.git
 cd receipt_automation
 python3 -m venv venv
 source venv/bin/activate
@@ -61,3 +61,99 @@ brew install poppler
 
 python app.py
 
+
+## 📦 API Endpoints
+
+### 📤 POST `/upload`
+
+Uploads a scanned receipt PDF.
+
+**Form Data:**
+- Key: `file` (PDF only)
+
+**Response:**
+```json
+{ "message": "Uploaded", "id": 1 }
+````
+
+---
+
+###  POST `/validate`
+
+Validates whether the uploaded file is a valid PDF.
+
+**Request:**
+
+```json
+{ "file_id": 1 }
+```
+
+**Response:**
+
+```json
+{ "is_valid": true, "reason": null }
+```
+
+---
+
+### 🤖 POST `/process`
+
+Extracts receipt data using Hugging Face's LayoutLM model.
+
+**Request:**
+
+```json
+{ "file_id": 1 }
+```
+
+**Response:**
+
+```json
+{
+  "message": "Processed",
+  "receipt_id": 1
+}
+```
+
+---
+
+### 📄 GET `/receipts`
+
+Lists all processed receipts.
+
+**Response:**
+
+```json
+[
+  {
+    "id": 1,
+    "merchant_name": "Starbucks",
+    "total_amount": 215.00,
+    "purchased_at": "2024-06-14"
+  }
+]
+```
+
+---
+
+### 🔍 GET `/receipts/<id>`
+
+Retrieves detailed receipt information by ID.
+
+**Response:**
+
+```json
+{
+  "id": 1,
+  "merchant_name": "Starbucks",
+  "total_amount": 215.00,
+  "purchased_at": "2024-06-14",
+  "file_path": "receipts/sample1.pdf"
+}
+
+
+## 👨‍💻 Author
+
+*Mohammed Muzzammil*
+*[muzzammilsilat56@gmail.com](muzzammilsilat56@gmail.com)*
+[LinkedIn](https://www.linkedin.com/in/mohammed-muzzammil/)
