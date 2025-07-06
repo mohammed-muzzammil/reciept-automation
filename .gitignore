@@ -7,10 +7,6 @@ __pycache__/
 venv/
 .env/
 
-# SQLite database
-*.db
-db/*.db
-
 # Logs and local files
 *.log
 *.swp
