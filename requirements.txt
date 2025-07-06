@@ -1,0 +1,6 @@
+Flask
+Flask_SQLAlchemy
+transformers
+torch
+pdf2image
+Pillow
